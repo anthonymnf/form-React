@@ -2,7 +2,7 @@ export default function Form() {
   return (
     <form className="flex flex-col gap-3 flex-wrap">
       <div className="flex flex-col">
-        <label className="text-xs" htmlFor="Name">
+        <label className="text-sm" htmlFor="Name">
           Nome:
         </label>
         <input
@@ -13,7 +13,7 @@ export default function Form() {
         />
       </div>
       <div className="flex flex-col">
-        <label className="text-xs" htmlFor="email">
+        <label className="text-sm" htmlFor="email">
           E-mail:
         </label>
         <input
@@ -24,17 +24,22 @@ export default function Form() {
         />
       </div>
       <div className="flex flex-col">
-        <a href="#" className="text-xs underline mb-2">
+        <a href="#" className="text-sm underline mb-2">
           Leia os termos
         </a>
-        <div>
+        <div className="flex gap-2 items-center">
           <input type="checkbox" />
-          <label className="text-xs" htmlFor="agree">
+          <label className="text-sm" htmlFor="agree">
             Concordo com os termos
           </label>
         </div>
       </div>
-      <button>Cadastrar</button>
+      <button
+        type="submit"
+        className="bg-slate-600 hover:bg-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white"
+      >
+        Cadastrar
+      </button>
     </form>
   );
 }
