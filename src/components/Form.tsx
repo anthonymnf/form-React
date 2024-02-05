@@ -72,6 +72,7 @@ export default function Form() {
         <div className="flex gap-2 items-center">
           <input
             type="checkbox"
+            className="accent-cyan-600"
             checked={agree}
             onChange={(ev) => setAgree(ev.target.checked)}
           />
@@ -85,7 +86,7 @@ export default function Form() {
       </div>
       <button
         type="submit"
-        className="bg-slate-600 hover:bg-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white"
+        className="bg-cyan-600 hover:bg-cyan-500 hover:shadow-xl font-medium text-sm py-2 px-4 rounded-lg text-white"
       >
         Cadastrar
       </button>
