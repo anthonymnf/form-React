@@ -1,12 +1,20 @@
 import { useState, FormEvent } from "react";
 import { User } from "../types/User";
 import { validate } from "../utils/validate";
+import TermosDialog from "./TermosDialog";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../@/components/ui/alert";
+import { CheckCircledIcon } from "@radix-ui/react-icons";
 
 export default function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<User | null>(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault();
@@ -22,17 +30,25 @@ export default function Form() {
 
     if (Object.keys(validateErrors).length > 0) {
       setErrors(validateErrors);
+      setShowAlert(false);
       return;
     }
-    alert("Obrigado por se inscrever!!");
-
     setName("");
     setEmail("");
     setAgree(false);
+    setShowAlert(true);
   };
 
   return (
     <form className="flex flex-col gap-3 flex-wrap" onSubmit={handleSubmit}>
+      {showAlert && (
+        <Alert className="bg-green-400">
+          <AlertTitle className="flex gap-1 items-center">
+            <CheckCircledIcon className="h-4 w-4" /> Bem-vindo!
+          </AlertTitle>
+          <AlertDescription>Inscrição concluida com sucesso!!</AlertDescription>
+        </Alert>
+      )}
       <div className="flex flex-col">
         <label className="text-sm" htmlFor="Name">
           Nome:
@@ -66,9 +82,7 @@ export default function Form() {
         )}
       </div>
       <div className="flex flex-col">
-        <a href="#" className="text-sm underline mb-2">
-          Leia os termos
-        </a>
+        <TermosDialog />
         <div className="flex gap-2 items-center">
           <input
             type="checkbox"
